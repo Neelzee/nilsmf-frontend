@@ -163,7 +163,7 @@ cython_debug/
 
 # dependencies
 /node_modules
-/reactfronten/node_modules
+reactfrontend/node_modules
 /.pnp
 .pnp.js
 
