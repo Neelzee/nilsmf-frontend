@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./mainpage.css";
 
-function App() {
+
+
+export function Navbar() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="navbar">
+      <div className="homeBtn">
+        <a>Home</a>
+      </div>
+      <div className="socials">
+        <div>
+          <a href="https://github.com/Neelzee/">github</a>
+        </div>
+        <div>
+          <a href="https://www.linkedin.com/in/nils-michael-fitjar-4346a3234/">linkedin</a>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export function Test() {
+  return (
+    <div>
+      <h1>
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+      </h1>
+    </div>
+  )
+}
