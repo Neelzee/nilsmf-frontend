@@ -1,0 +1,33 @@
+body {
+  background-color: #222;
+  color: #fff;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.social-links {
+  display: flex;
+}
+
+.social-links a {
+  margin-left: 10px;
+}
+
+.hello-world {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

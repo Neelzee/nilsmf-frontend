@@ -6,7 +6,7 @@ export function Navbar() {
   return (
     <div className="navbar">
       <div className="homeBtn">
-        <a>Home</a>
+        <a href="">Home</a>
       </div>
       <div className="socials">
         <div>
@@ -17,7 +17,7 @@ export function Navbar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export function Test() {
@@ -27,5 +27,23 @@ export function Test() {
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
       </h1>
     </div>
-  )
+  );
+}
+
+
+export function AppTest() {
+  return (
+    <div className="app">
+      <nav>
+        <a href="#">Home</a>
+        <div className="social-links">
+          <a href="https://github.com/Neelzee/">Github</a>
+          <a href="https://www.linkedin.com/in/nils-michael-fitjar-4346a3234/">Linkedin</a>
+        </div>
+      </nav>
+      <div className="hello-world">
+        <h1>Hello World!</h1>
+      </div>
+    </div>
+  );
 }
