@@ -1,2 +1,2 @@
 # nilsmf
-Django Webpage
+Docker/React/Django Webpage
