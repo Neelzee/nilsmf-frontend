@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import Project
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("title","content","is_posted")
+    list_display = ("title","content","post_date","is_posted")
     
     
     

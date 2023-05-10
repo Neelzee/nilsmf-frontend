@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Base image
-FROM python:3.11-slim-buster
+FROM python:3.11-slim-buster AS backend
 
 # Set working directory
 WORKDIR /app
@@ -13,11 +13,8 @@ COPY pyreqs.txt .
 RUN pip install --no-cache-dir -r pyreqs.txt
 
 # Copy Django backend files
-COPY djangobackend/ .
+COPY djangobackend .
 
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
-ENV DJANGO_SETTINGS_MODULE=myapp.settings.production
 
 # Expose port 8000
 EXPOSE 8000
