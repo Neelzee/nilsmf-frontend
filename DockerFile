@@ -7,10 +7,10 @@ FROM python:3.11-slim-buster
 WORKDIR /app
 
 # Copy requirements file
-COPY requirements.txt .
+COPY pyreqs.txt .
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r pyreqs.txt
 
 # Copy Django backend files
 COPY djangobackend/ .
