@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Project
     "projects",
+    # Used for media models
+    "media",
     
     # Libs
     "corsheaders",

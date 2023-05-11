@@ -20,11 +20,15 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 
-from projects import views
+from media import views
 
-router.register(r'projects', views.ProjectView, 'projects')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("api/", include(router.urls)),
+    path("api/article/<int:article_id>/", views.get_article),
+    path("api/author/<int:author_id>/", views.get_author),
+    path("api/media/<int:media_id>/", views.get_media),
+    path("api/article/all/", views.articles_list),
+    path("api/author/all/", views.author_list),
+    path("api/media/all/", views.media_list),
 ]

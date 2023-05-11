@@ -13,7 +13,7 @@ export function NavBar() {
                 </NavLink>
 
                 <div className="page">
-                    <NavLink to="/projects">
+                    <NavLink to="/articles">
                         <ProjectsButton />
                     </NavLink>
                 </div>
