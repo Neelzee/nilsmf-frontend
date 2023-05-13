@@ -1,6 +1,5 @@
 import "./navbar.css";
-import { HomeButton, ProjectsButton } from "./NavBarButtons";
-
+import { HomeButton, ProjectsButton, AboutButton } from "./NavBarButtons";
 
 
 import { NavLink } from "react-router-dom";
@@ -15,6 +14,9 @@ export function NavBar() {
                 <div className="page">
                     <NavLink to="/articles">
                         <ProjectsButton />
+                    </NavLink>
+                    <NavLink to="/about">
+                        <AboutButton />
                     </NavLink>
                 </div>
 

@@ -10,7 +10,16 @@ export function HomeButton() {
 export function ProjectsButton() {
     return (
         <div className="home">
-            Projects
+            Articles
         </div>
     );  
+}
+
+
+export function AboutButton() {
+    return (
+        <div className="home">
+            About
+        </div>
+    );
 }

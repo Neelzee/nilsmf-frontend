@@ -1,22 +1,13 @@
-import { NavBar } from "../../components/navbar/Navbar";
+import { NavBar } from "../../../components/www/navbar/Navbar"
 import axios from 'axios'; 
 import React from "react";
 import "./Article.css";
+import { RenderArticle } from "../../../components/www/articles/ArticlesComp";
 
-// Renders the given article
-export function RenderArticle(article, authors) {
-    return (
-        <div key={article.article_id} className="article">
-            <h1 className="title">{article.title}</h1>
-            <div className="content">{article.body}</div>
-            <div>Published: {article.published_date}</div>
-            <div>By: {getAuthor(article.author_id, authors)}</div>
-        </div>
-    );
-}
-
-
-
+/**
+ * This function returns the page, that shows all the posted articles
+ * @returns Article page
+ */
 export function Articles() {
 
     const [post, setPost] = React.useState(null);

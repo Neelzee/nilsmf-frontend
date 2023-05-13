@@ -138,3 +138,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000" # replace with your frontend URL
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT"
+]
