@@ -6,6 +6,8 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
+import datetime as dt
+
 from .serializer import AuthorSerializer, MediaSerializer, ArticleSerializer
 
 from .models import Author, Media, Article
@@ -81,7 +83,7 @@ def author_list(request):
         case _:
             return HttpResponse(status=404)
         
-        
+@csrf_exempt    
 def media_list(request):
     match request.method:
         case "GET":
@@ -91,7 +93,7 @@ def media_list(request):
         case _:
             return HttpResponse(status=404)
         
-        
+@csrf_exempt
 def get_media(request, media_id):
     try:
         media = Media.objects.get(pk=media_id)
@@ -103,5 +105,32 @@ def get_media(request, media_id):
             case _:
                 return HttpResponse(status=404)
         
-    except Article.DoesNotExist:
+    except Media.DoesNotExist:
         return HttpResponse(status=404)
+    
+    
+@csrf_exempt
+def get_latest_articles(request):
+    """Gets the latest article
+
+    Args:
+        request: Request
+    """
+    articles = Article.objects.all()
+
+    article = None
+    latest_date = dt.datetime.utcfromtimestamp(0)
+    
+    for art in articles:
+        date = dt.datetime.combine(art.published_date, art.published_time)
+        if (date > latest_date) and art.is_published:
+            latest_date = date
+            article = art
+
+    if article is None:
+        return HttpResponse(status=404)
+    else:
+        return JsonResponse(ArticleSerializer(article).data)
+    
+            
+    

@@ -13,38 +13,31 @@ export function Home() {
     const [Apost, AsetPost] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get("http://localhost:8000/api/author/all/").then(res => {
-            AsetPost(res.data);
+        Promise.all([
+            axios.get("http://localhost:8000/api/article/latest/"),
+            axios.get(`http://localhost:8000/api/author/${post?.author_id}/`)
+        ]).then(([postRes, authorRes]) => {
+            setPost(postRes.data);
+            AsetPost(authorRes.data);
+        }).catch(error => {
+            console.error(error);
         });
     }, []);
 
-    React.useEffect(() => {
-        axios.get("http://localhost:8000/api/article/all/").then(res => {
-            setPost(res.data)
-        });
-    }, []);
-
-    if (!post || !Apost) {
-        return null;
+    if (!post) {
+        return (
+        <>
+            <NavBar />
+            <h1>Loading...</h1>
+        </>
+        );
     }
-
 
     return (
         <>
-        <NavBar />
-            {getLatest(post, Apost)}
+            <NavBar />
+            {RenderArticle(post, Apost)}
             {media}
         </>
     );
-}
-
-
-function getLatest(articles, authors) {
-    let sortedArticles = articles.sort((a, b) => new Date(a.published_date.split("-")) - new Date(b.published_date.split("-")));
-
-    for (let i in sortedArticles) {
-        if (sortedArticles[i].is_published) {
-            return RenderArticle(sortedArticles[i], authors);
-        }
-    }
 }

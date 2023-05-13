@@ -26,6 +26,7 @@ from media import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/article/<int:article_id>/", views.get_article),
+    path("api/article/latest/", views.get_latest_articles),
     path("api/author/<int:author_id>/", views.get_author),
     path("api/media/<int:media_id>/", views.get_media),
     path("api/article/all/", views.articles_list),
