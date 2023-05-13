@@ -5,12 +5,12 @@ import { Articles } from "./pages/www/articles/Article";
 import { About } from "./pages/www/about/About";
 import { MissingPage } from "./pages/www/404/MissingPage";
 import { MetaHome } from "./pages/meta/home/MetaHome";
-
+import { MetaMissingPage } from "./pages/meta/404/MetaMissingPage"
+import { MetaArticles } from "./pages/meta/articles/MetaArticles";
 
 import {
     Route,
     Routes} from "react-router-dom";
-import { MetaMissingPage } from "./components/meta/404/MetaMissingPage";
 
 function App() {
 return (
@@ -19,6 +19,7 @@ return (
 		<Route path="/articles" element={<Articles />} />
 		<Route path="/about" element={<About />} />
 		<Route path="/meta" element={<MetaHome />} />
+		<Route path="/meta/articles" element={<MetaArticles />} />
 		<Route path="/meta/*" element={<MetaMissingPage />} />
 		<Route path="/*" element={<MissingPage />} />
 	</Routes>

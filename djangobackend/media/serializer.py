@@ -31,6 +31,7 @@ class ArticleSerializer(ModelSerializer):
             "body_media_id",
             "is_published",
             "published_date",
+            "published_time",
             "last_updated"
             )
         

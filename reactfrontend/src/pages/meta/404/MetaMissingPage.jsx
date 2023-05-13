@@ -1,4 +1,4 @@
-import { MetaNavBar } from "../meta-navbar/MetaNavBar";
+import { MetaNavBar } from "../../../components/meta/meta-navbar/MetaNavBar";
 
 /**
  * Page that is shown on any non-valid url
