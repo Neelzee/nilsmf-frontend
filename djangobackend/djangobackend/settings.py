@@ -133,17 +133,17 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# White listing the localhost:3000 port
-# for React
+# Ensures we can have react frontend server?
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
 
-
+# Ensures we can have react frontend server?
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000" # replace with your frontend URL
+    "http://localhost:3000"
 ]
 
+# Dont know why needed, specifically
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -151,4 +151,9 @@ CORS_ALLOW_METHODS = [
     "PATCH",
     "POST",
     "PUT"
+]
+
+# Dont know why needed, specifically
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
 ]

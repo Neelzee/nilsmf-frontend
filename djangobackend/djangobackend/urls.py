@@ -32,4 +32,6 @@ urlpatterns = [
     path("api/article/all/", views.articles_list),
     path("api/author/all/", views.author_list),
     path("api/media/all/", views.media_list),
+    # For editing articles
+    path("api/edit-article/<int:author_id>/", views.edit_article),
 ]
