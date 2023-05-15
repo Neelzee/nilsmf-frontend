@@ -25,8 +25,16 @@ SECRET_KEY = 'django-insecure-suum*@^@99+qfgam*wcna1_5j&ltj-usox*42*l*qkz%d@o^&0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
+
+## User model
+AUTH_USER_MODEL = "users.AppUser"
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework.authentication.SessionAuthentication",),
+}
 
 # Application definition
 
@@ -37,10 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Project
-    "projects",
     # Used for media models
     "media",
+    
+    # Used for meta-users
+    "users.apps.UsersConfig",
     
     # Libs
     "corsheaders",
@@ -48,6 +57,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # Libs
+    'corsheaders.middleware.CorsMiddleware',
+    
+    # Pre-added
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,8 +69,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
-    # Libs
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'djangobackend.urls'
@@ -140,7 +151,9 @@ CORS_ORIGIN_WHITELIST = (
 
 # Ensures we can have react frontend server?
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    'http://127.0.0.1',
+    'http://0.0.0.0',
 ]
 
 # Dont know why needed, specifically
@@ -152,6 +165,8 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT"
 ]
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Dont know why needed, specifically
 AUTHENTICATION_BACKENDS = [
