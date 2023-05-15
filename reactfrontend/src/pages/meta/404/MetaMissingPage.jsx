@@ -6,7 +6,9 @@ import { MetaNavBar } from "../../../components/meta/meta-navbar/MetaNavBar";
 export function MetaMissingPage() {
     return (
         <>
-        <MetaNavBar />
+        <header>
+            <MetaNavBar />
+        </header>
         <h1>This page is missing</h1>
         <div>Concact IT</div>
         </>

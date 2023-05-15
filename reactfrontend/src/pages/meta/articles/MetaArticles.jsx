@@ -28,7 +28,9 @@ export function MetaArticles() {
 
     return (
         <>
-        <MetaNavBar />
+        <header>
+            <MetaNavBar />
+        </header>
         <div className="articles">
             {post.map((art) => RenderArticleEdit(art, Apost))}
         </div>

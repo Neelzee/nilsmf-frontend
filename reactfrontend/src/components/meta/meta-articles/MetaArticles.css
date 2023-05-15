@@ -29,6 +29,16 @@
 }
 
 .delete-btn {
-    background-color: #ff5555;
     border-color: #282a36;
+    background-color: #ff5555;
+}
+
+.delete-btn:hover {
+    border-color: #282a36;
+    background-color: #fc4040;
+}
+
+
+.delete-btn:active {
+    background-color: red;
 }

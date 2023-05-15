@@ -1,14 +1,18 @@
+import "./MetaNavBar.css";
+
 import { NavLink } from "react-router-dom";
+
+
 
 export function MetaNavBar() {
     return (
-        <div className="navbar">
+        <div className="meta-navbar">
             <NavLink to="/meta/articles">
-                <div>
+                <div className="meta-btn">
                     Articles
                 </div>
             </NavLink>
-            <div>
+            <div className="meta-btn">
                 About
             </div>
         </div>

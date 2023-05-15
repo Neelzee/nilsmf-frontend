@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from "react";
 import "./Article.css";
 import { RenderArticle } from "../../../components/www/articles/ArticlesComp";
+import { FooterContent } from "../../../components/www/footer/Footer";
 
 /**
  * This function returns the page, that shows all the posted articles
@@ -32,12 +33,17 @@ export function Articles() {
 
     return (
         <>
-        <NavBar />
+        <header>
+            <NavBar />
+        </header>
             {post.map((art) => (
                 art.is_published
                     ? RenderArticle(art, Apost)
                     : null
             ))}
+        <footer>
+            <FooterContent />
+        </footer>
         </>
     );
 }

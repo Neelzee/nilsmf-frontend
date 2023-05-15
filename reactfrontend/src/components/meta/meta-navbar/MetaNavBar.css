@@ -1,0 +1,9 @@
+.meta-navbar {
+    background-color: #6272a4;
+    padding: 5px;
+    display: flex;
+}
+
+.meta-btn {
+    background-color: #44475a;
+}
