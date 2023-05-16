@@ -1,15 +1,20 @@
 import "./MetaArticles.css"
 
 
-export function RenderArticleEdit(article, authors) {
+export function RenderArticleEdit(
+    article: { author_id: number; article_id: number; is_published: boolean; title: string; published_date: string; published_time: string; },
+    authors: { author_id: number, first_name: string, last_name: string}[]) {
 
-    let author = {
-        first_name: "Unknown",
-        last_name: "",
-    };
+    
+    let author = authors.find((a: { author_id: number; }) => a.author_id === article.author_id);
 
-
-    author = authors.find(a => a.author_id === article.author_id);
+    if (!author) {
+        author = {
+            author_id: -1,
+            first_name: "Uknnown",
+            last_name: ""
+        }
+    }
 
     return (
       <div key={article.article_id} className={`meta-article ${article.is_published ? "published" : "not-published"}`}>
