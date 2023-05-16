@@ -21,8 +21,10 @@ export function MetaMissingPage() {
         <header>
             <MetaNavBar />
         </header>
-        <h1>This page is missing</h1>
-        <div>Concact IT if it should not be missing</div>
+        <main>
+            <h1>This page is missing</h1>
+            <p>Concact IT if it should not be missing</p>
+        </main>
         </>
     );
 }

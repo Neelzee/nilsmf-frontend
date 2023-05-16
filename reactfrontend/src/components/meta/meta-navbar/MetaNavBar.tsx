@@ -7,7 +7,7 @@ export function MetaNavBar() {
     const loggedIn = isLoggedIn(); // Call isLoggedIn function to get login status
 
     return (
-        <div className="meta-navbar">
+        <nav className="meta-navbar">
             <NavLink to="/meta/articles">
                 <div className="meta-btn">Articles</div>
             </NavLink>
@@ -15,6 +15,6 @@ export function MetaNavBar() {
             <div className="meta-btn">
                 About
             </div>
-        </div>
+        </nav>
     );
 }

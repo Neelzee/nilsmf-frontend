@@ -12,7 +12,9 @@ export function Home() {
             <header>
                 <NavBar />
             </header>
-            {GetLatestArticle()}
+            <main>
+                {GetLatestArticle()}
+            </main>
             <footer>
                 <FooterContent />
             </footer>

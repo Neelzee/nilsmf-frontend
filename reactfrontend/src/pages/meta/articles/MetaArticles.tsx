@@ -3,20 +3,31 @@ import React from "react";
 
 import { MetaNavBar } from "../../../components/meta/meta-navbar/MetaNavBar";
 import { RenderArticleEdit } from '../../../components/meta/meta-articles/MetaArticlesComp';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { isLoggedIn } from "../../../components/meta/meta-login/MetaLoginComp";
+import { ApiRoot } from '../../../components/utils/Utils';
 
 export function MetaArticles() {
+
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (!isLoggedIn()) {
+            navigate("/meta/login");
+        }
+    })
 
     const [post, setPost] = React.useState(null);
     const [Apost, AsetPost] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get("http://localhost:8000/api/author/all/").then(res => {
+        axios.get(`${ApiRoot()}author/all/`).then(res => {
             AsetPost(res.data);
         });
     }, []);
 
     React.useEffect(() => {
-        axios.get("http://localhost:8000/api/article/all/").then(res => {
+        axios.get(`${ApiRoot()}article/all/`).then(res => {
             setPost(res.data)
         });
     }, []);
@@ -31,9 +42,19 @@ export function MetaArticles() {
         <header>
             <MetaNavBar />
         </header>
-        <div className="articles">
-            {post.map((art) => RenderArticleEdit(art, Apost))}
-        </div>
+        <main className="articles">
+            <section>
+                <NavLink to="/articles">
+                    See Articles
+                </NavLink>
+                <NavLink to="/meta/articles/create">
+                    Create new article
+                </NavLink>
+            </section>
+            <aside>
+                {post.map((art) => RenderArticleEdit(art, Apost))}
+            </aside>
+        </main>
         </>
     );
 }

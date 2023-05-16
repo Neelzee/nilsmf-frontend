@@ -1,9 +1,9 @@
+import { MetaNavBar } from "../../../components/meta/meta-navbar/MetaNavBar";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../../components/meta/meta-login/MetaLoginComp";
-import { MetaNavBar } from "../../../components/meta/meta-navbar/MetaNavBar"
-import React from "react";
 
-export const MetaHome = () => {
+export function MetaArticlesCreate() {
 
     const navigate = useNavigate();
 
@@ -11,16 +11,18 @@ export const MetaHome = () => {
         if (!isLoggedIn()) {
             navigate("/meta/login");
         }
-    })
+    });
 
-    
 
     return (
         <>
+        <header>
             <MetaNavBar />
-            <main>
-                <p>This is the main meta page</p>
-            </main>
+        </header>
+        <main>
+            <h1>new article</h1>
+            <input type="textfield"></input>
+        </main>
         </>
-    ); 
+    );
 }

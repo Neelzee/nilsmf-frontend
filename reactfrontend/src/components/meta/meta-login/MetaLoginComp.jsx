@@ -1,18 +1,8 @@
 import Cookies from 'js-cookie';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from 'reactstrap';
+
 
 export function isLoggedIn() {
     const sessionId = Cookies.get('sessionid');
@@ -21,50 +11,52 @@ export function isLoggedIn() {
   
 
 
+
 export function LoginForm() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const HandleLogin = () => {
-        const emailField = document.getElementById('email-field').value;
-        const passwordField = document.getElementById('password-field').value;
+  const handleLogin = () => {
+    axios
+      .post('http://localhost:8000/api/login', {
+        email: email,
+        password: password,
+      })
+      .then(response => {
+        const sessionId = response.data.session_id;
+        if (!!sessionId) {
+          Cookies.set('sessionid', sessionId, { sameSite: 'none', secure: true });
+          navigate('/meta');
+        }
+      })
+      .catch(err => console.log(err));
+  };
 
-        axios
-            .post('http://localhost:8000/api/login', {
-                email: emailField,
-                password: passwordField,
-            })
-            .then(response => {
-                const sessionId = response.data.session_id;
-                if (!!sessionId) {
-                    Cookies.set('sessionid', sessionId, { sameSite: 'none', secure: true });
-                    navigate('/meta');
-                }
-            })
-            .catch(err => console.log(err));
-    }
-
-    return (
-        <Modal isOpen={true}>
-            <ModalHeader> Login </ModalHeader>
-            <ModalBody>
-            <Form>
-                <FormGroup>
-                <Label for="email">Email</Label>
-                <Input type="text" name="email" placeholder="Enter email" id="email-field" />
-                </FormGroup>
-                <FormGroup>
-                <Label for="password">Password</Label>
-                <Input type="password" name="password" placeholder="Enter password" id="password-field" />
-                </FormGroup>
-            </Form>
-            </ModalBody>
-            <ModalFooter>
-            <Button onClick={HandleLogin}>
-                Login
-            </Button>
-            </ModalFooter>
-        </Modal>
-    );
+  return (
+    <div>
+      <h3> Login </h3>
+      <div>
+        <label>Email</label>
+        <input
+          type="text"
+          name="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+      </div>
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  );
 }
 
 export function LogoutButton() {

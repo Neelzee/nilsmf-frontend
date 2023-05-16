@@ -7,6 +7,7 @@ import { MissingPage } from "./pages/www/404/MissingPage";
 import { MetaHome } from "./pages/meta/home/MetaHome";
 import { MetaMissingPage } from "./pages/meta/404/MetaMissingPage"
 import { MetaArticles } from "./pages/meta/articles/MetaArticles";
+import { MetaArticlesCreate } from "./pages/meta/articles/MetaArticlesCreate";
 import { MetaLogin } from "./pages/meta/login/MetaLogin";
 
 import {
@@ -22,6 +23,7 @@ return (
 		<Route path="/meta" element={<MetaHome />} />
 		<Route path="/meta/login" element={<MetaLogin />} />
 		<Route path="/meta/articles" element={<MetaArticles />} />
+		<Route path="/meta/articles/create" element={<MetaArticlesCreate />} />
 		<Route path="/meta/*" element={<MetaMissingPage />} />
 		<Route path="/*" element={<MissingPage />} />
 	</Routes>

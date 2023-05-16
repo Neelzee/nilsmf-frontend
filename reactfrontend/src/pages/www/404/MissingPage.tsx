@@ -7,8 +7,10 @@ export function MissingPage() {
     return (
         <>
         <NavBar />
-        <h1>This page is missing</h1>
-        <div>Come back later</div>
+        <main>
+            <h1>This page is missing</h1>
+            <p>Come back later</p>
+        </main>
         </>
     );
 }

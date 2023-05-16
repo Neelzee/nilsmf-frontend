@@ -1,11 +1,10 @@
 import "./MetaArticles.css"
-
+import React from "react";
 
 export function RenderArticleEdit(
     article: { author_id: number; article_id: number; is_published: boolean; title: string; published_date: string; published_time: string; },
     authors: { author_id: number, first_name: string, last_name: string}[]) {
 
-    
     let author = authors.find((a: { author_id: number; }) => a.author_id === article.author_id);
 
     if (!author) {

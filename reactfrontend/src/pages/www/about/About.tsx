@@ -7,8 +7,10 @@ export function About() {
         <header>
             <NavBar />
         </header>
-        <h1>Halla</h1>
-        <div>Me</div>
+        <main>
+            <h1>Halla</h1>
+            <div>Me</div>
+        </main>
         <footer>
             <FooterContent />
         </footer>

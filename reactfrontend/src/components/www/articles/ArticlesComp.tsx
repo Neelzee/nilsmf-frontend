@@ -28,19 +28,13 @@ export function GetLatestArticle() {
   return RenderArticle(latestArticle, author);
 }
 
-/**
- * Renders the given article, with the given author
- * @param {*} article 
- * @param {*} authors 
- * @returns div, containing the article
- */
-export function RenderArticle(article, author) {
+export function RenderArticle(article: { article_id: any; title: any; body: any; published_date: any; }, author: { first_name: any; last_name: any; }) {
   return (
-      <div key={article.article_id} className="article">
+      <article key={article.article_id} className="article">
           <h1 className="title">{article.title}</h1>
           <div className="content">{article.body}</div>
           <div>Published: {article.published_date}</div>
           <div>By: {author.first_name} {author.last_name}</div>
-      </div>
+      </article>
   );
 }

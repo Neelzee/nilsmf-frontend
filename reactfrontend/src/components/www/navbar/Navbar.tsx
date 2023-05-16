@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 export function NavBar() {
     return (
-        <div className="navbar">
+        <nav className="navbar">
                 <NavLink to="/">
                     <HomeButton />
                 </NavLink>
@@ -33,6 +33,6 @@ export function NavBar() {
                     </a>
                 </div>
             </div>
-        </div>
+        </nav>
     );
 }

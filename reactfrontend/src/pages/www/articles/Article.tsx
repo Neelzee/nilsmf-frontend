@@ -36,11 +36,13 @@ export function Articles() {
         <header>
             <NavBar />
         </header>
+        <main>
             {post.map((art) => (
                 art.is_published
                     ? RenderArticle(art, Apost)
                     : null
             ))}
+        </main>
         <footer>
             <FooterContent />
         </footer>

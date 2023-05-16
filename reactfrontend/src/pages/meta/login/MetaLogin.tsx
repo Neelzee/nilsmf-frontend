@@ -4,10 +4,12 @@ import { MetaNavBar } from "../../../components/meta/meta-navbar/MetaNavBar";
 export function MetaLogin() {
     return (
         <>
-        <MetaNavBar />
-        <div>
+        <header>
+            <MetaNavBar />
+        </header>
+        <main>
             <LoginForm />
-        </div>
+        </main>
         </>
     );
 }
