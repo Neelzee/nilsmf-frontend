@@ -1,3 +1,4 @@
+import { LoginForm } from "../../../components/meta/meta-login/MetaLoginComp";
 import { MetaNavBar } from "../../../components/meta/meta-navbar/MetaNavBar";
 
 export function MetaLogin() {
@@ -5,7 +6,7 @@ export function MetaLogin() {
         <>
         <MetaNavBar />
         <div>
-            You should prolly, log in, dude.
+            <LoginForm />
         </div>
         </>
     );

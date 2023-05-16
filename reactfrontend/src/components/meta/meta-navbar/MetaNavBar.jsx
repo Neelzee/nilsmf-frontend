@@ -1,17 +1,17 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { LogoutButton, isLoggedIn } from '../meta-login/MetaLoginComp';
 import "./MetaNavBar.css";
 
-import { NavLink } from "react-router-dom";
-
-
-
 export function MetaNavBar() {
+    const loggedIn = isLoggedIn(); // Call isLoggedIn function to get login status
+
     return (
         <div className="meta-navbar">
             <NavLink to="/meta/articles">
-                <div className="meta-btn">
-                    Articles
-                </div>
+                <div className="meta-btn">Articles</div>
             </NavLink>
+            {loggedIn && <LogoutButton />}
             <div className="meta-btn">
                 About
             </div>
