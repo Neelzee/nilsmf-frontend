@@ -139,7 +139,7 @@ def get_latest_articles(request):
 @api_view(["PUT"])
 @permission_classes([permissions.IsAdminUser])
 @login_required
-def edit_article(request, article_id: int):
+def edit_article(request, article_id: int) -> Response:
     """Replaces the given article,
     with the specified ID, if it exist,
     and if the user has Django Admin permissions.
@@ -152,3 +152,18 @@ def edit_article(request, article_id: int):
         return Response(serializer.data)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+
+def delete_article(request, article_id: int) -> Response:
+    
+    article = get_object_or_404(Article, id=article_id)
+    serializer = ArticleSerializer(article, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    pass

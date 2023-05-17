@@ -2,6 +2,7 @@ import { MetaNavBar } from "../../../components/meta/meta-navbar/MetaNavBar";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../../components/meta/meta-login/MetaLoginComp";
+import { MetaEditor } from "../../../components/meta/meta-editor/MetaEditor";
 
 export function MetaArticlesCreate() {
 
@@ -21,7 +22,7 @@ export function MetaArticlesCreate() {
         </header>
         <main>
             <h1>new article</h1>
-            <input type="textfield"></input>
+            <MetaEditor />
         </main>
         </>
     );
