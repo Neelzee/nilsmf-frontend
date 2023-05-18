@@ -1,6 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-
-
+import json
 from django.http import HttpResponse, JsonResponse, HttpRequest
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
@@ -15,7 +14,6 @@ from .serializer import AuthorSerializer, MediaSerializer, ArticleSerializer
 
 from .models import Author, Media, Article
 
-@csrf_exempt
 def articles_list(request: HttpRequest) -> HttpResponse:
     """Returns all the articles in the datatbase
 
@@ -33,7 +31,6 @@ def articles_list(request: HttpRequest) -> HttpResponse:
         case _:
             return HttpResponse(status=404)
         
-@csrf_exempt
 def get_article(request: HttpRequest, article_id: int) -> HttpResponse:
     """Gets the article on the given id
 
@@ -59,7 +56,6 @@ def get_article(request: HttpRequest, article_id: int) -> HttpResponse:
 
 
 
-@csrf_exempt
 def get_author(request: HttpRequest, author_id: int) -> HttpResponse:
     try:
         author = Author.objects.get(pk=author_id)
@@ -76,7 +72,6 @@ def get_author(request: HttpRequest, author_id: int) -> HttpResponse:
     
     
 
-@csrf_exempt
 def author_list(request: HttpRequest) -> HttpResponse:
     match request.method:
         case "GET":
@@ -86,7 +81,6 @@ def author_list(request: HttpRequest) -> HttpResponse:
         case _:
             return HttpResponse(status=404)
         
-@csrf_exempt    
 def media_list(request: HttpRequest) -> HttpResponse:
     match request.method:
         case "GET":
@@ -96,7 +90,6 @@ def media_list(request: HttpRequest) -> HttpResponse:
         case _:
             return HttpResponse(status=404)
         
-@csrf_exempt
 def get_media(request: HttpRequest, media_id) -> HttpResponse:
     try:
         media = Media.objects.get(pk=media_id)
@@ -112,7 +105,6 @@ def get_media(request: HttpRequest, media_id) -> HttpResponse:
         return HttpResponse(status=404)
     
     
-@csrf_exempt
 def get_latest_articles(request: HttpRequest) -> HttpResponse:
     """Gets the latest article
 
@@ -171,4 +163,51 @@ def delete_article(request: HttpRequest, article_id: int) -> Response:
         except Session.DoesNotExist:
             return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
     return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+
+def create_article(request: HttpRequest) -> HttpResponse:
+    print(request.COOKIES)
+    return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+    title = request.POST.get("title")
+    fp_media_desc = request.POST.get("fp_media_description")
+    fp_media_type = request.POST.get("fp_media_type")
+    fp_media = request.POST.get("frontpage_media")
+    body = request.POST.get("body")
+    is_published = request.POST.get("is_published")
     
+    # Invalid form
+    if fp_media is None:
+        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+    
+    media = Media.objects.create(
+        is_video=fp_media_type=="1",
+        description=fp_media_desc,
+        media=fp_media
+    )
+    
+    article = Article.objects.create(
+        title=title,
+        author_id=0,
+        frontpage_media_id=media.media_id,
+        body=body,
+        is_published=is_published,
+        publish_date = dt.datetime.now(),
+        publish_time = dt.datetime.now()
+    )
+    
+        
+    session_id = request.COOKIES.get("sessionid")
+    
+    if session_id:
+        try:
+            # Validates the current user?
+            _ = Session.get(session_key = session_id)
+            # Saves the data?
+            media.save()
+            article.save()
+            # Everything is okay, article was created
+            return HttpResponse(status=status.HTTP_201_CREATED)
+        # Not authorizerd
+        except Session.DoesNotExist:
+            return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+    # Not authorizerd
+    return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)

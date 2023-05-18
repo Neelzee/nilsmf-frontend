@@ -56,20 +56,31 @@ INSTALLED_APPS = [
     "rest_framework",
 ]
 
+# CSFR
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
+
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_COOKIE_HTTPONLY = True
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    'http://127.0.0.1',
+    'http://0.0.0.0',
+]
+
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+
 MIDDLEWARE = [
-    # Libs
     'corsheaders.middleware.CorsMiddleware',
-    
-    # Pre-added
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
+
 
 ROOT_URLCONF = 'djangobackend.urls'
 

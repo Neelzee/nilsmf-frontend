@@ -34,7 +34,10 @@ urlpatterns = [
     path("api/media/all/", views.media_list),
     # For editing articles
     path("api/edit-article/<int:author_id>/", views.edit_article),
-    
+    # For creating articles
+    path("api/create-article/", views.create_article),
     # For user login/creation
-    path("api/", include("users.urls"))
+    path("api/", include("users.urls")),
+    # For csrf tokens
+    path("api/", include("csrftoken.urls")),
 ]

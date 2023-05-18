@@ -26,7 +26,7 @@ export function LoginForm() {
       .then(response => {
         const sessionId = response.data.session_id;
         if (!!sessionId) {
-          Cookies.set('sessionid', sessionId, { sameSite: 'none', secure: true });
+          Cookies.set('sessionid', sessionId, { sameSite: 'Lax', secure: true });
           navigate('/meta');
         }
       })
