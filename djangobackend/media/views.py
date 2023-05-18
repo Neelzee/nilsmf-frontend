@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 
 
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpRequest
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import permissions, status
 from django.contrib.auth.decorators import login_required
+from django.contrib.sessions.models import Session
 
 import datetime as dt
 
@@ -15,7 +16,7 @@ from .serializer import AuthorSerializer, MediaSerializer, ArticleSerializer
 from .models import Author, Media, Article
 
 @csrf_exempt
-def articles_list(request):
+def articles_list(request: HttpRequest) -> HttpResponse:
     """Returns all the articles in the datatbase
 
     Args:
@@ -33,7 +34,7 @@ def articles_list(request):
             return HttpResponse(status=404)
         
 @csrf_exempt
-def get_article(request, article_id: int):
+def get_article(request: HttpRequest, article_id: int) -> HttpResponse:
     """Gets the article on the given id
 
     Args:
@@ -59,7 +60,7 @@ def get_article(request, article_id: int):
 
 
 @csrf_exempt
-def get_author(request, author_id: int):
+def get_author(request: HttpRequest, author_id: int) -> HttpResponse:
     try:
         author = Author.objects.get(pk=author_id)
         
@@ -76,7 +77,7 @@ def get_author(request, author_id: int):
     
 
 @csrf_exempt
-def author_list(request):
+def author_list(request: HttpRequest) -> HttpResponse:
     match request.method:
         case "GET":
             authors = Author.objects.all()
@@ -86,7 +87,7 @@ def author_list(request):
             return HttpResponse(status=404)
         
 @csrf_exempt    
-def media_list(request):
+def media_list(request: HttpRequest) -> HttpResponse:
     match request.method:
         case "GET":
             medias = Media.objects.all()
@@ -96,7 +97,7 @@ def media_list(request):
             return HttpResponse(status=404)
         
 @csrf_exempt
-def get_media(request, media_id):
+def get_media(request: HttpRequest, media_id) -> HttpResponse:
     try:
         media = Media.objects.get(pk=media_id)
         
@@ -112,7 +113,7 @@ def get_media(request, media_id):
     
     
 @csrf_exempt
-def get_latest_articles(request):
+def get_latest_articles(request: HttpRequest) -> HttpResponse:
     """Gets the latest article
 
     Args:
@@ -139,7 +140,7 @@ def get_latest_articles(request):
 @api_view(["PUT"])
 @permission_classes([permissions.IsAdminUser])
 @login_required
-def edit_article(request, article_id: int) -> Response:
+def edit_article(request: HttpRequest, article_id: int) -> HttpResponse:
     """Replaces the given article,
     with the specified ID, if it exist,
     and if the user has Django Admin permissions.
@@ -149,21 +150,25 @@ def edit_article(request, article_id: int) -> Response:
 
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    
-
-def delete_article(request, article_id: int) -> Response:
+@api_view(["PUT"])
+@permission_classes([permissions.IsAdminUser])
+@login_required
+def delete_article(request: HttpRequest, article_id: int) -> Response:
     
     article = get_object_or_404(Article, id=article_id)
-    serializer = ArticleSerializer(article, data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    pass
+    session_id = request.COOKIES.get("sessionid")
+    
+    if session_id:
+        try:
+            _ = Session.get(session_key = session_id)
+            article.delete()
+            return HttpResponse(status=status.HTTP_200_OK)
+        except Session.DoesNotExist:
+            return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+    return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+    

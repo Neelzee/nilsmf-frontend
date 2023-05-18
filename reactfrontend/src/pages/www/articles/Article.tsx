@@ -1,7 +1,7 @@
 import { NavBar } from "../../../components/www/navbar/Navbar"
 import axios from 'axios'; 
 import React from "react";
-import "./Article.css";
+import "./Article.scss";
 import { RenderArticle } from "../../../components/www/articles/ArticlesComp";
 import { FooterContent } from "../../../components/www/footer/Footer";
 

@@ -1,5 +1,4 @@
-import "./navbar.css";
-import { HomeButton, ProjectsButton, AboutButton } from "./NavBarButtons";
+import "./navbar.scss";
 
 
 import { NavLink } from "react-router-dom";
@@ -7,32 +6,21 @@ import { NavLink } from "react-router-dom";
 export function NavBar() {
     return (
         <nav className="navbar">
-                <NavLink to="/">
-                    <HomeButton />
-                </NavLink>
-
-                <div className="page">
-                    <NavLink to="/articles">
-                        <ProjectsButton />
-                    </NavLink>
-                    <NavLink to="/about">
-                        <AboutButton />
-                    </NavLink>
-                </div>
-
-
-            <div className="socials">
-                <div>
-                    <a href="https://github.com/Neelzee/">
-                        GitHub
-                    </a>
-                </div>
-                <div>
-                    <a href="https://www.linkedin.com/in/nils-michael-fitjar-4346a3234/">
-                        LinkedIN
-                    </a>
-                </div>
-            </div>
+            <NavLink to="/" className="btn">
+                Home
+            </NavLink>
+            <NavLink to="/articles" className="btn pages">
+                Projects
+            </NavLink>
+            <NavLink to="/about" className="btn pages">
+                About
+            </NavLink>
+            <a href="https://github.com/Neelzee/" className="btn socials github">
+                GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/nils-michael-fitjar-4346a3234/" className="btn socials linkedin">
+                LinkedIN
+            </a>
         </nav>
     );
 }

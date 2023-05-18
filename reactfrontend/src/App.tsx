@@ -1,4 +1,3 @@
-import "./App.css";
 
 import { Home } from "./pages/www/home/Home";
 import { Articles } from "./pages/www/articles/Article";

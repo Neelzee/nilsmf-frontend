@@ -1,4 +1,4 @@
-import "./MetaArticles.css"
+import "./MetaArticles.scss"
 import React from "react";
 
 export function RenderArticleEdit(
