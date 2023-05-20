@@ -31,41 +31,7 @@ export function MetaArticlesCreate() {
     
 
     const SaveArticle = () => {
-        const title = (document.getElementById("title") as HTMLInputElement)?.value;
-        const fpMediaInput = (document.getElementById("frontpage-media") as HTMLInputElement);
-        const fpDescription = (document.getElementById("fp-description") as HTMLInputElement)?.value;
-        const mediaType = (document.getElementById("media-type") as HTMLInputElement).value;
-        const isPublished = (document.getElementById("published") as HTMLInputElement).checked;
-        const ckEditorContent = editorData;
-
-        let fpMedia = fpMediaInput?.files?.[0];
-
-        const formData = new FormData();
-        if (fpMedia != null) {
-            formData.append('frontpage_media', fpMedia);
-        }
-        formData.append('title', title);
-        formData.append('fp_media_description', fpDescription);
-        formData.append('fp_media_type', mediaType === video ? "1" : "0");
-        formData.append("body", ckEditorContent);
-        formData.append('is_published', isPublished ? "1" : "0");
-
-        axios.post(`${ApiRoot()}create-article/`, formData)
-            .then(response => {
-                if (response.status === 200) {
-                    return response.data;
-                } else {
-                    alert(`Failed to save article:\n${response}`);
-                }
-            })
-            .then(data => {
-                // Handle the response data as needed
-                console.log(data);
-            })
-            .catch(error => {
-                // Handle the error
-                alert(`Failed to save article:\n${error}`);
-            });
+        
     };
 
     useEffect(() => {

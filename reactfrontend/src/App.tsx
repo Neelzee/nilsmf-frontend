@@ -18,6 +18,7 @@ import {
 
 function App() {
 
+	/*
 	React.useEffect(() => {
 		fetchCSRFToken()
 			.then(csrfToken => {
@@ -30,6 +31,7 @@ function App() {
 				console.log(error);
 			});
 	}, []);
+	*/
 
 
 	return (
