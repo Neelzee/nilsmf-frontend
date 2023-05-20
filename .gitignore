@@ -172,6 +172,8 @@ reactfrontend/node_modules
 
 # production
 /build
+/djangobackend/static
+/djangobackend/media
 
 # misc
 .DS_Store
@@ -184,6 +186,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Logs
+/apache/apache.*
 
 
 # File location
