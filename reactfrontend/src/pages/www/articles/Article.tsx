@@ -4,6 +4,7 @@ import React from "react";
 import "./Article.scss";
 import { RenderArticle } from "../../../components/www/articles/ArticlesComp";
 import { FooterContent } from "../../../components/www/footer/Footer";
+import { ApiRoot } from "../../../components/utils/Utils";
 
 /**
  * This function returns the page, that shows all the posted articles
@@ -15,13 +16,13 @@ export function Articles() {
     const [Apost, AsetPost] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get("http://localhost:8000/api/author/all/").then(res => {
+        axios.get(`${ApiRoot()}author/all/`).then(res => {
             AsetPost(res.data);
         });
     }, []);
 
     React.useEffect(() => {
-        axios.get("http://localhost:8000/api/article/all/").then(res => {
+        axios.get(`${ApiRoot()}article/all/`).then(res => {
             setPost(res.data)
         });
     }, []);

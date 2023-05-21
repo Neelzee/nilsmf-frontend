@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { ApiRoot } from "../../utils/Utils"
 
 export function isLoggedIn() {
     const sessionId = Cookies.get('sessionid');
@@ -19,7 +19,7 @@ export function LoginForm() {
 
   const handleLogin = () => {
     axios
-      .post('http://localhost:8000/api/login', {
+      .post(`${ApiRoot()}login/`, {
         email: email,
         password: password,
       })

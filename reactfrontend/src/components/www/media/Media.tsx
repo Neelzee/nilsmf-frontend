@@ -1,12 +1,13 @@
 import axios from "axios";
 import React from "react";
+import { ApiRoot } from "../../utils/Utils";
 
 export function GetMedia(id) {
 
     const [post, setPost] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get(`http://localhost:8000/api/media/${id}/`).then(res => {
+        axios.get(`${ApiRoot()}media/${id}/`).then(res => {
             setPost(res.data);
         })
         .catch((err) => console.log(err));

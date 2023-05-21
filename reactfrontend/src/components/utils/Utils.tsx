@@ -3,5 +3,5 @@
  * @returns http://localhost:8000/api/
  */
 export function ApiRoot(): string {
-    return "http://localhost:8000/api/";
+    return "http://nilsmf:8001/api/";
 }

@@ -140,11 +140,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Ensures we can have react frontend server?
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'http://localhost:8000',
+    'http://localhost:8001',
+    'http://nilsmf:8000',
+    'http://nilsmf:8001',
 )
 
 # Ensures we can have react frontend server?
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost:8000",
+    "http://localhost:8001",
+    "http://nilsmf:8001",
+    "http://nilsmf:8000",
     'http://127.0.0.1',
     'http://0.0.0.0',
 ]
