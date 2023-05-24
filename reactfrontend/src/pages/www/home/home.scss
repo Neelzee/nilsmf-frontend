@@ -1,0 +1,51 @@
+.main-home {
+    display: grid;
+
+    .sidebar {
+        grid-column: 1;
+        background-color: #6272a4;
+        width: fit-content;
+        margin: .5rem;
+        height: fit-content;
+
+        .about-me {
+            text-align: center;
+            width: fit-content;
+            margin: auto;
+            background-color: #282a36;
+
+
+            h3 {
+                background-color: #44475a;
+            }
+        }
+
+        .small-articles {
+            .small-article {
+                margin-left: .5rem;
+                margin-right: .5rem;
+                .small-title {
+                    background-color: #44475a;
+                    margin: 0;
+                }
+                
+                .small-content {
+                    background-color: #282a36;
+                    margin: 0;
+                    margin-bottom: .5rem;
+                }
+            }
+        }
+    }
+    
+    .latest-article {
+        grid-column-start: 2;
+        grid-column-end: 8;
+        
+        .article {
+            width: fit-content;
+            margin-right: .5rem;
+            margin-left: .5rem;
+        }
+   }
+}

@@ -1,5 +1,5 @@
 import { Home } from "./pages/www/home/Home";
-import { Articles } from "./pages/www/articles/Article";
+import { Articles, Article } from "./pages/www/articles/Article";
 import { About } from "./pages/www/about/About";
 import { MissingPage } from "./pages/www/404/MissingPage";
 import { MetaHome } from "./pages/meta/home/MetaHome";
@@ -38,6 +38,7 @@ function App() {
 		<Routes>
 			<Route path="/" element={<Home />} />
 			<Route path="/articles" element={<Articles />} />
+			<Route path="/article/:id" element={<Article />} />
 			<Route path="/about" element={<About />} />
 			<Route path="/meta" element={<MetaHome />} />
 			<Route path="/meta/login" element={<MetaLogin />} />
