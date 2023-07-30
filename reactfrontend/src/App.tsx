@@ -1,53 +1,26 @@
-import { Home } from "./pages/www/home/Home";
-import { Articles, Article } from "./pages/www/articles/Article";
-import { About } from "./pages/www/about/About";
-import { MissingPage } from "./pages/www/404/MissingPage";
-import { MetaHome } from "./pages/meta/home/MetaHome";
-import { MetaMissingPage } from "./pages/meta/404/MetaMissingPage"
-import { MetaArticles } from "./pages/meta/articles/MetaArticles";
-import { MetaArticlesCreate } from "./pages/meta/articles/MetaArticlesCreate";
-import { MetaLogin } from "./pages/meta/login/MetaLogin";
-import { fetchCSRFToken } from "./components/utils/CSRFToken";
 import React from 'react';
-import Cookies from 'js-cookie';
-
-
-import {
-    Route,
-    Routes} from "react-router-dom";
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-
-	/*
-	React.useEffect(() => {
-		fetchCSRFToken()
-			.then(csrfToken => {
-				Cookies.set("csrftoken", csrfToken, { 
-					sameSite: 'Lax',
-					secure: true,
-					path: "/" });
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}, []);
-	*/
-
-
-	return (
-		<Routes>
-			<Route path="/" element={<Home />} />
-			<Route path="/articles" element={<Articles />} />
-			<Route path="/article/:id" element={<Article />} />
-			<Route path="/about" element={<About />} />
-			<Route path="/meta" element={<MetaHome />} />
-			<Route path="/meta/login" element={<MetaLogin />} />
-			<Route path="/meta/articles" element={<MetaArticles />} />
-			<Route path="/meta/articles/create" element={<MetaArticlesCreate />} />
-			<Route path="/meta/*" element={<MetaMissingPage />} />
-			<Route path="/*" element={<MissingPage />} />
-		</Routes>
-	);
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
