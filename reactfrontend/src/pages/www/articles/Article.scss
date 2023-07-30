@@ -1,0 +1,53 @@
+.article {
+    background-color: #6272a4;
+    padding: .5rem;
+    width: 50%;
+    margin: auto;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+
+    .title {
+        background-color: #44475a;
+        padding: .5rem;
+        margin:auto;
+        width: 50%;
+        text-align: center;
+    }
+
+    @media (max-width: 767px) {
+        width: 100%;
+        margin-bottom: 1rem;
+
+        .title {
+            width: 100%;
+        }
+    }
+
+    .article-info {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: center;
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            width: fit-content;
+            grid-row: 1;
+            grid-column: 3;
+        }
+    }
+
+
+    .content {
+        background-color: #282a36;
+        padding-top: .5rem;
+        padding-right: .5rem;
+        padding-left: .5rem;
+        padding-bottom: .5rem;
+    }
+}
+

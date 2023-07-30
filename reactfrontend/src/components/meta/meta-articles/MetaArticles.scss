@@ -1,0 +1,44 @@
+.published > .meta-title{
+    background-color: #50fa7b;
+}
+
+.datetime {
+    background-color: #6272a4;
+    padding: 5rem;
+}
+
+.meta-article {
+    margin: 30%;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    background-color: #6272a4;
+    padding: 5rem;
+    text-align: center;
+}
+
+.meta-title {
+    margin: 0%;
+}
+
+.edit-btns {
+    display: flex;
+}
+
+.edit-btn {
+    border-color: #282a36;
+}
+
+.delete-btn {
+    border-color: #282a36;
+    background-color: #ff5555;
+}
+
+.delete-btn:hover {
+    border-color: #282a36;
+    background-color: #fc4040;
+}
+
+
+.delete-btn:active {
+    background-color: red;
+}

@@ -1,0 +1,59 @@
+
+
+.btn-container {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: #44475a;
+    height: fit-content;
+
+    .is-published {
+        text-align: center;
+        padding-top: 1rem;
+    }
+    
+    .btn {
+        border-color: #50fa7b;
+        padding: .5rem;
+        margin-top: .5rem;
+    }
+}
+
+.save-btn {
+    background-color: #50fa7b;
+    width: 30%;
+}
+
+.editor-container {
+    grid-column: 2;
+
+    .container {
+        padding: .5rem;
+
+        label {
+            padding-right: .5rem;
+            font-size: larger;
+        }
+
+        input {
+            height: 2rem;
+        }
+    }
+
+    .editor {
+        width: 100%;
+        padding: .5rem;
+    }
+
+    .title-input {
+        width: 100%;
+        align-items: center;
+        * {
+            font-size: medium;
+            margin-bottom: .5rem;
+        }
+    }
+}
+
+.main {
+    display: grid;
+}
