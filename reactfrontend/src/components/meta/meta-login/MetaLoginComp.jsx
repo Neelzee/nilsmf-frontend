@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ApiRoot } from "../../utils/Utils"
@@ -19,7 +19,7 @@ export function LoginForm() {
 
   const handleLogin = () => {
     axios
-      .post(`${ApiRoot()}login/`, {
+      .post(`${ApiRoot()}login`, {
         email: email,
         password: password,
       })

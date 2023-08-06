@@ -20,10 +20,8 @@ export function MetaArticlesCreate() {
 
     let isVideo = false;
 
-    const video = "video"
-
     const mediaTypes = [
-        video,
+        "video",
         "image"
     ];
 
