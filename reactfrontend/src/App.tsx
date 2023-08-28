@@ -14,6 +14,7 @@ import {
     Routes
 	} from "react-router-dom";
 import { MetaArticlesEdit } from "./pages/meta/articles/MetaArticlesEdit";
+import { HomeTest } from "./pages/www/test/HomeTest";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
+			<Route path="/test" element={<HomeTest />}/>
 			<Route path="/articles" element={<Articles />} />
 			<Route path="/article/:id" element={<Article />} />
 			<Route path="/about" element={<About />} />

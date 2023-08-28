@@ -7,7 +7,7 @@ import { isLoggedIn } from "../../../components/meta/meta-login/MetaLoginComp";
 
 export function MetaArticlesEdit() {
 
-    const { article_id } = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export function MetaArticlesEdit() {
     useEffect(() => {
             const fetchData = async () => {
             try {
-                const response = await axios.get(`${ApiRoot()}article/${article_id}`);
+                const response = await axios.get(`${ApiRoot()}article/${id}`);
                 setArticle(response.data);
                 setLoading(false);
             } catch (error) {
@@ -34,7 +34,7 @@ export function MetaArticlesEdit() {
         };  
 
         fetchData();
-    }, [article_id]);
+    }, [id]);
 
     if (loading) {
         return <div>Loading...</div>;
