@@ -1,7 +1,6 @@
 import { MetaNavBar } from "../../../components/meta/meta-navbar/MetaNavBar";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../../components/meta/meta-login/MetaLoginComp";
-import { MetaEditor } from "../../../components/meta/meta-editor/MetaEditor";
 import React, { useEffect } from 'react';
 import "./meta-articles-create.scss";
 import axios from 'axios';
@@ -21,10 +20,8 @@ export function MetaArticlesCreate() {
 
     let isVideo = false;
 
-    const video = "video"
-
     const mediaTypes = [
-        video,
+        "video",
         "image"
     ];
 
@@ -74,7 +71,6 @@ export function MetaArticlesCreate() {
                     </select>
                 </section>
                 {/* CKEditor */}
-                <MetaEditor article={{ body: "" }} onEditorChange={handleEditorChange} />
             </article>
             {/* Buttons */}
             <aside className="btn-container">
@@ -85,8 +81,8 @@ export function MetaArticlesCreate() {
                 <section className="container">
                     <label>Frontpage Media:</label>
                     {isVideo
-                        ? <video src="" alt="" />
-                        : <img src="" alt="" />
+                        ? <video src="" />
+                        : <img src="" alt="Placeholder" />
                     }
                 </section>
                 <button className="btn save-btn" onClick={SaveArticle}>

@@ -1,0 +1,32 @@
+.main-test {
+    background-color: rebeccapurple;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .info {
+        background-color: lightblue;
+
+        h1 {
+            text-align: center;
+            color: black;
+        }
+
+        
+        .tid-bit {
+            justify-content: center;
+            color: black;
+            display: flex;
+            background-color: pink;
+        }
+    }
+
+    .welcome {
+        background-color: red;
+    }
+
+    .work {
+        background-color: darkblue;
+        grid-column: span 2;
+    }
+}

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./MetaArticles.scss"
 import React from "react";
 
@@ -24,12 +25,12 @@ export function RenderArticleEdit(
             <div>By: {author.first_name} {author.last_name}</div>
         </div>
         <div className="edit-btns">
-            <button className="edit-btn">
-                Edit
-            </button>
-            <button className="delete-btn">
-                Delete
-            </button>
+            <NavLink className="edit-btn" to={`/meta/articles/edit/${article.article_id}`}>
+                Endre
+            </NavLink>
+            <NavLink className="delete-btn" to={`/meta/articles/edit/${article.article_id}`}>
+                Slett
+            </NavLink>
         </div>
       </div>
     );

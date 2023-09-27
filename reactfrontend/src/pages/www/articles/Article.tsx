@@ -17,12 +17,14 @@ export function Articles() {
     const [Apost, AsetPost] = React.useState(null);
 
     React.useEffect(() => {
+        //@ts-ignore
         axios.get(`${ApiRoot()}author/all/`).then(res => {
             AsetPost(res.data);
         });
     }, []);
-
+    
     React.useEffect(() => {
+        //@ts-ignore
         axios.get(`${ApiRoot()}article/all/`).then(res => {
             setPost(res.data)
         });
@@ -39,7 +41,8 @@ export function Articles() {
             <NavBar />
         </header>
         <main>
-            {post.map((art) => (
+            {//@ts-ignore
+            post.map((art) => (
                 art.is_published
                     ? RenderArticlePartial(art, Apost, 400)
                     : null
@@ -52,7 +55,7 @@ export function Articles() {
     );
 }
 
-function getAuthor(id, authors) {
+function getAuthor(id: number, authors: { author_id: number, first_name: string; last_name: string; }[]) {
     for (let i in authors) {
         if (authors[i].author_id === id) {
             return authors[i].first_name + " " + authors[i].last_name;
@@ -67,7 +70,11 @@ function getAuthor(id, authors) {
  * Gets the specified article
  * @returns Article-article
  */
-export function GetArticle(article_id: number): { article, author} {
+export function GetArticle(article_id: number):
+{ 
+    article: { article_id: number; title: string; body: string; published_date: string; },
+    author: { author_id: number, first_name: string; last_name: string; }
+} {
     const [article, setArticle] = React.useState(null);
     const [author, setAuthor] = React.useState(null);
   
@@ -90,7 +97,7 @@ export function GetArticle(article_id: number): { article, author} {
   
       fetchData();
     }, [article_id]);
-  
+    //@ts-ignore
     return {article: article, author: author};
 }
 

@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react"
 import { ApiRoot } from "../../utils/Utils";
-import { NavLink, useNavigate } from "react-router-dom";
-import { React } from "react";
+import { NavLink } from "react-router-dom";
+
 
 /**
  * Gets the latest article
  * @returns Article-article
  */
-export function GetLatestArticle() {
+export function GetLatestArticle(): {
+  article: { article_id: number; title: string; body: string; published_date: string; },
+  author: { author_id: number, first_name: string; last_name: string; }
+} {
   const [latestArticle, setLatestArticle] = useState({});
   const [author, setAuthor] = useState({});
 
@@ -30,7 +33,7 @@ export function GetLatestArticle() {
 
     fetchData();
   }, []);
-
+  //@ts-ignore
   return {article: latestArticle, author: author};
 }
 
@@ -68,7 +71,7 @@ export function ArticleList(): { article_id: number, title: string, body: string
  */
 export function RenderArticlePartial(
   article: { article_id: number; title: string; body: string; published_date: string; },
-  author: { first_name: string; last_name: string; },
+  author: { author_id: number, first_name: string; last_name: string; },
   char_count: number) {
 
     return (
@@ -84,7 +87,7 @@ export function RenderArticlePartial(
   );
 }
 
-export function RenderArticle(article: { article_id: any; title: any; body: any; published_date: any; }, author: { first_name: any; last_name: any; }) {
+export function RenderArticle(article: { article_id: number; title: string; body: string; published_date: string; }, author: { author_id: number, first_name: string; last_name: string; }) {
   return (
       <article key={article.article_id} className="article">
           <h1 className="title">{article.title}</h1>

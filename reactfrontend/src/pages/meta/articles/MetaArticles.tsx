@@ -52,7 +52,8 @@ export function MetaArticles() {
                 </NavLink>
             </section>
             <aside>
-                {post.map((art) => RenderArticleEdit(art, Apost))}
+                {//@ts-ignore
+                post.map((art) => RenderArticleEdit(art, Apost))}
             </aside>
         </main>
         </>

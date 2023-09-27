@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { ApiRoot } from "../../utils/Utils";
 
-export function GetMedia(id) {
+export function GetMedia(id: number) {
 
     const [post, setPost] = React.useState(null);
 
@@ -24,7 +24,7 @@ export function GetMedia(id) {
 }
 
 
-export function RenderMedia(media) {
+export function RenderMedia(media: {media: string, is_video: boolean, description: string}) {
     if (media.is_video) {
         return (<video src={media.media} />);
     } else {

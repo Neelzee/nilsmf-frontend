@@ -7,14 +7,14 @@ import { MetaMissingPage } from "./pages/meta/404/MetaMissingPage"
 import { MetaArticles } from "./pages/meta/articles/MetaArticles";
 import { MetaArticlesCreate } from "./pages/meta/articles/MetaArticlesCreate";
 import { MetaLogin } from "./pages/meta/login/MetaLogin";
-import { fetchCSRFToken } from "./components/utils/CSRFToken";
-import React from 'react';
-import Cookies from 'js-cookie';
 
 
 import {
     Route,
-    Routes} from "react-router-dom";
+    Routes
+	} from "react-router-dom";
+import { MetaArticlesEdit } from "./pages/meta/articles/MetaArticlesEdit";
+import { HomeTest } from "./pages/www/test/HomeTest";
 
 function App() {
 
@@ -37,6 +37,7 @@ function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
+			<Route path="/test" element={<HomeTest />}/>
 			<Route path="/articles" element={<Articles />} />
 			<Route path="/article/:id" element={<Article />} />
 			<Route path="/about" element={<About />} />
@@ -44,6 +45,7 @@ function App() {
 			<Route path="/meta/login" element={<MetaLogin />} />
 			<Route path="/meta/articles" element={<MetaArticles />} />
 			<Route path="/meta/articles/create" element={<MetaArticlesCreate />} />
+			<Route path="/meta/articles/edit/:id" element={<MetaArticlesEdit />} />
 			<Route path="/meta/*" element={<MetaMissingPage />} />
 			<Route path="/*" element={<MissingPage />} />
 		</Routes>
