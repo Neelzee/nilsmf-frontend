@@ -1,7 +1,10 @@
+import { NavBar } from "../components/navbar";
+import "../styles/root.scss";
+
 export function Root() {
   return (
     <>
-      <div>Toolbar</div>
+      <NavBar />
       <main>main</main>
       <footer>footer</footer>
     </>
