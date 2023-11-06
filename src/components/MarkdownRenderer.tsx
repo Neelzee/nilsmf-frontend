@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ApiRoot } from "../utils/funcs";
-import { getArticle } from "./article";
 
 export function RenderMarkdown(props: { file: string }) {
   const [content, setContent] = useState("# NO DATA FOUND");

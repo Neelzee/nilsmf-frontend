@@ -1,16 +1,14 @@
 import { RenderMarkdown } from "../components/MarkdownRenderer";
-import { Footer } from "../components/footer";
 import { NavBar } from "../components/navbar";
-import "../styles/root.scss";
 
-export function Root() {
+export function Contact() {
   return (
     <>
       <NavBar />
       <main>
-        <RenderMarkdown file={"root.md"} />
+        <RenderMarkdown file={"contact.md"} />
       </main>
-      <Footer />
+      <footer>footer</footer>
     </>
   );
 }

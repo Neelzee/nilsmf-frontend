@@ -6,8 +6,9 @@ export function NavBar(): ReactElement {
   return (
     <nav>
       <Link to={"/"}>/</Link>
+      <Link to={"/projects"}>/projects</Link>
       <Link to={"/about"}>/about</Link>
-      <Link to={"/contacts"}>/contacts</Link>
+      <Link to={"/contact"}>/contact</Link>
     </nav>
   );
 }

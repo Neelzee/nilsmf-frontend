@@ -1,0 +1,20 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  article {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: rgb(85, 85, 85);
+    max-width: 90%;
+    padding: 0.5rem;
+    h1,
+    h2 {
+      text-align: center;
+    }
+    pre {
+      max-width: fit-content;
+      margin: 0 auto;
+    }
+  }
+}
