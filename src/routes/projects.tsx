@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import { NavBar } from "../components/navbar";
 import axios from "axios";
 import { ApiRoot } from "../utils/funcs";
-import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Footer } from "../components/footer";
 import "../styles/articles.scss";
-import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkPrism from "remark-prism";
-import "highlight.js/styles/github.css"; // Choose a style that you prefer
+import React, { Fragment } from "react";
+import { Remark } from "react-remark";
+import remarkGemoji from "remark-gemoji";
+import rehypeSlug from "rehype-slug";
+import rehypeAutoLinkHeadings from "rehype-autolink-headings";
+import { RenderImage } from "../components/images";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export function Projects() {
   const [projects, setProjects] = useState<string[]>([]);
@@ -27,19 +32,6 @@ export function Projects() {
         setIsLoading(false); // Set loading state to false in case of an error
       });
   }, []);
-
-  const renderers = {
-    //@ts-ignore
-    code: ({ language, value }) => {
-      console.log(`Rendering code block with language: ${language}`);
-      return (
-        <pre>
-          <code className={`language-${language}`}>{value}</code>
-        </pre>
-      );
-    },
-  };
-
   return (
     <>
       <NavBar />
@@ -52,14 +44,39 @@ export function Projects() {
           projects.map((p) => {
             return (
               <article>
-                <Markdown
-                  /* @ts-ignore */
-                  remarkPlugins={[remarkGfm]}
-                  /* @ts-ignore */
-                  //components={renderers}
+                <Remark
+                  // @ts-ignore
+                  remarkPlugins={[remarkGemoji]}
+                  remarkRehypeOptions={{ allowDangerousHtml: true }}
+                  // @ts-ignore
+                  rehypePlugins={[rehypeSlug, rehypeAutoLinkHeadings]}
+                  rehypeReactOptions={{
+                    components: {
+                      // @ts-ignore
+                      code: (props) => {
+                        return (
+                          <SyntaxHighlighter
+                            language={
+                              props.className.split("-")[
+                                props.className.split("-").length - 1
+                              ]
+                            }
+                            style={dracula}
+                            showLineNumbers={true}
+                          >
+                            {props.children[0]}
+                          </SyntaxHighlighter>
+                        );
+                      },
+                      // @ts-ignore
+                      img: (props) => {
+                        return <RenderImage src={props.src} alt={props.alt} />;
+                      },
+                    },
+                  }}
                 >
                   {p}
-                </Markdown>
+                </Remark>
               </article>
             );
           })
