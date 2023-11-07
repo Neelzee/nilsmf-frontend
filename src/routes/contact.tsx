@@ -1,4 +1,5 @@
 import { RenderMarkdown } from "../components/MarkdownRenderer";
+import { Footer } from "../components/footer";
 import { NavBar } from "../components/navbar";
 
 export function Contact() {
@@ -8,7 +9,7 @@ export function Contact() {
       <main>
         <RenderMarkdown file={"contact.md"} />
       </main>
-      <footer>footer</footer>
+      <Footer />
     </>
   );
 }

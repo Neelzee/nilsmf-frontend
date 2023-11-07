@@ -1,4 +1,5 @@
 import { RenderMarkdown } from "../components/MarkdownRenderer";
+import { Footer } from "../components/footer";
 import { NavBar } from "../components/navbar";
 
 export function About() {
@@ -8,7 +9,7 @@ export function About() {
       <main>
         <RenderMarkdown file={"about-me.md"} />
       </main>
-      <footer>footer</footer>
+      <Footer />
     </>
   );
 }

@@ -15,14 +15,15 @@ import rehypeAutoLinkHeadings from "rehype-autolink-headings";
 import { RenderImage } from "../components/images";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Link } from "react-router-dom";
 
 export function Projects() {
-  const [projects, setProjects] = useState<string[]>([]);
+  const [projects, setProjects] = useState<[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get(ApiRoot("article/projects"))
+      .get(ApiRoot("projects/all"))
       .then((res) => {
         setProjects(res.data);
         setIsLoading(false); // Set loading state to false once data is fetched
@@ -49,7 +50,6 @@ export function Projects() {
                   remarkPlugins={[remarkGemoji]}
                   remarkRehypeOptions={{ allowDangerousHtml: true }}
                   // @ts-ignore
-                  rehypePlugins={[rehypeSlug, rehypeAutoLinkHeadings]}
                   rehypeReactOptions={{
                     components: {
                       // @ts-ignore
@@ -78,7 +78,7 @@ export function Projects() {
                     },
                   }}
                 >
-                  {p}
+                  {p[1]}
                 </Remark>
               </article>
             );

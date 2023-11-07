@@ -9,7 +9,7 @@ export function RenderMarkdown(props: { file: string }) {
 
   useEffect(() => {
     axios
-      .get(ApiRoot(`article/${props.file}`))
+      .get(ApiRoot(`articles/${props.file}`))
       .then((res) => {
         setContent(res.data);
       })

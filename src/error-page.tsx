@@ -13,3 +13,18 @@ export function ErrorPage() {
     </div>
   );
 }
+
+export function MissingProject() {
+  const error = useRouteError();
+  return (
+    <div id="error-page">
+      <h1>Missing project</h1>
+      <p>Sorry, an unexpected error has occurred.</p>
+      <p>The project you are looking for seems to be missing...</p>
+      <p>
+        {/* @ts-ignore */}
+        <i>{error.statusText || error.message}</i>
+      </p>
+    </div>
+  );
+}
