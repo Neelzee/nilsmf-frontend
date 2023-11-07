@@ -54,6 +54,10 @@ export function Projects() {
                     components: {
                       // @ts-ignore
                       code: (props) => {
+                        if (props.className === undefined) {
+                          return <code>{props.children[0]}</code>;
+                        }
+
                         return (
                           <SyntaxHighlighter
                             language={
@@ -62,7 +66,6 @@ export function Projects() {
                               ]
                             }
                             style={dracula}
-                            showLineNumbers={true}
                           >
                             {props.children[0]}
                           </SyntaxHighlighter>
