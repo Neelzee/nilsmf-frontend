@@ -28,7 +28,7 @@ export function Project() {
         setIsLoading(false); // Set loading state to false once data is fetched
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setIsLoading(false); // Set loading state to false in case of an error
       });
   }, []);
@@ -41,7 +41,7 @@ export function Project() {
           <div>Loading...</div>
         ) : (
           // Render the data when it's available
-          <article>
+          <article className="article">
             <Remark
               // @ts-ignore
               remarkPlugins={[remarkGemoji]}
