@@ -1,3 +1,5 @@
+@import "_const.scss";
+
 @font-face {
   font-family: "Fira Code";
   src: url("../../fonts/FiraCode-Regular.woff2") format("woff2");
@@ -5,7 +7,7 @@
 
 html {
   font-family: "Fira Code";
-  background-color: grey;
+  background-color: $background;
 }
 
 body {
