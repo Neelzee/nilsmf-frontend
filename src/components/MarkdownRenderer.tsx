@@ -1,24 +1,23 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { ApiRoot } from "../utils/funcs";
+import { createEffect, createSignal, onMount } from "solid-js";
+import { SolidMarkdown } from "solid-markdown";
 
 export function RenderMarkdown(props: { file: string }) {
-  const [content, setContent] = useState("# NO DATA FOUND");
+	const [content, setContent] = createSignal("# NO DATA FOUND");
 
-  useEffect(() => {
-    axios
-      .get(ApiRoot(`articles/${props.file}`))
-      .then((res) => {
-        setContent(res.data);
-      })
-      .catch((err) => console.log(err));
-  });
+	onMount(() => {
+		axios
+			.get(ApiRoot(`articles/${props.file}`))
+			.then((res) => {
+				setContent(res.data);
+			})
+			.catch((err) => console.log(err));
+	});
 
-  return (
-    <article>
-      <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
-    </article>
-  );
+	return (
+		<article>
+			<SolidMarkdown>{content}</SolidMarkdown>
+		</article>
+	);
 }

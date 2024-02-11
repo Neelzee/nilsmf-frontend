@@ -1,14 +1,13 @@
-import { ReactElement } from "react";
 import "../styles/navbar.scss";
-import { Link } from "react-router-dom";
+import { A } from "@solidjs/router";
 
-export function NavBar(): ReactElement {
-  return (
-    <nav>
-      <Link to={"/"}>./~</Link>
-      <Link to={"/projects"}>./~/projects</Link>
-      <Link to={"/about"}>./~/about</Link>
-      <Link to={"/contact"}>./~/contact</Link>
-    </nav>
-  );
+export function NavBar() {
+	return (
+		<nav>
+			<A href={"/"}>./~</A>
+			<A href={"/projects"}>./~/projects</A>
+			<A href={"/about"}>./~/about</A>
+			<A href={"/contact"}>./~/contact</A>
+		</nav>
+	);
 }

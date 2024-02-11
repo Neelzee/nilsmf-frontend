@@ -1,43 +1,31 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+/* @refresh reload */
+import { render } from "solid-js/web";
+import { Router, Route } from "@solidjs/router";
 import "./styles/index.scss";
+import App from "./App";
+import { About } from "./pages/about";
+import { Project } from "./pages/project";
+import { Contact } from "./pages/contact";
+import { Projects } from "./pages/projects";
 
-import { Root } from "./routes/root";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { ErrorPage, MissingProject } from "./error-page";
-import { About } from "./routes/about";
-import { Projects } from "./routes/projects";
-import { Contact } from "./routes/contact";
-import { Project } from "./routes/project";
+const root = document.getElementById("root");
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/projects",
-    element: <Projects />,
-    errorElement: <MissingProject />,
-  },
-  {
-    path: "/projects/:file",
-    element: <Project />,
-    errorElement: <MissingProject />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-]);
+if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
+	throw new Error(
+		"Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got misspelled?",
+	);
+}
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+render(
+	() => (
+		<Router>
+			<Route path="/" component={App} />
+			<Route path="/about" component={About} />
+			<Route path="/contact" component={Contact} />
+			<Route path="/projects" component={Projects} />
+			<Route path="/projects/:file" component={Project} />
+		</Router>
+	),
+	// biome-ignore lint/style/noNonNullAssertion: <explanation>
+	root!,
 );
