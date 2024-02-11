@@ -1,19 +1,23 @@
+@import "_const.scss";
+
 nav {
-  background-color: black;
-  color: white;
+  background-color: $dark_background;
+  color: $foreground;
   display: flex;
   justify-content: center;
   align-items: center;
   a {
     padding: 0.25rem;
+    padding-left: .75rem;
+    padding-right: .75rem;
     margin-left: 2rem;
     margin-right: 2rem;
     text-decoration: none;
-    color: white;
+    color: $foreground;
   }
 
   *:hover {
-    background-color: gray;
+    background-color: $selection;
     cursor: pointer;
   }
 }

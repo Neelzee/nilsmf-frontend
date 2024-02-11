@@ -1,7 +1,9 @@
+@import "_const.scss";
+
 footer {
   text-align: center;
   width: 100%;
-  background-color: rgb(75, 73, 73);
+  background-color: $dark_background;
   * {
     margin: 0.5rem;
     padding: 0.25rem;
@@ -10,7 +12,7 @@ footer {
   padding-top: 0.25rem;
   a {
     text-decoration: none;
-    color: black;
+    color: $purple;
     padding-bottom: 0;
     margin-bottom: 0;
   }

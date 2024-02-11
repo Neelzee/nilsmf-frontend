@@ -1,3 +1,5 @@
+@import "_const.scss";
+
 main {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,7 @@ main {
   article {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    background-color: rgb(85, 85, 85);
+    background-color: $dark_background;
     max-width: 90%;
     padding: 0.5rem;
     h1,
