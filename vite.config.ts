@@ -1,14 +1,8 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
-// import devtools from 'solid-devtools/vite';
 
 export default defineConfig({
   plugins: [
-    /* 
-    Uncomment the following line to enable solid-devtools.
-    For more info see https://github.com/thetarnav/solid-devtools/tree/main/packages/extension#readme
-    */
-    // devtools(),
     solidPlugin(),
   ],
   server: {
@@ -16,5 +10,13 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
+    outDir: 'build', // Specify the output directory
+    rollupOptions: {
+      output: {
+        entryFileNames: 'my-app.js', // Specify the entry file name
+        chunkFileNames: 'chunks/[name]-[hash].js', // Specify chunk file names
+        assetFileNames: 'assets/[name]-[hash].[ext]', // Specify asset file names
+      },
+    },
   },
 });

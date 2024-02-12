@@ -3,13 +3,15 @@ import axios from "axios";
 import { ApiRoot } from "../utils/funcs";
 import { Footer } from "../components/footer";
 import "../styles/articles.scss";
-import { createEffect, createSignal, onMount } from "solid-js";
+import { Suspense, createEffect, createSignal, onMount, useTransition } from "solid-js";
+import { RenderMarkdownText } from "../components/MarkdownRenderer";
 
 export function Projects() {
-	const [projects, setProjects] = createSignal<[]>([]);
+	const [projects, setProjects] = createSignal<string[][]>([]);
 	const [isLoading, setIsLoading] = createSignal(true);
+	const [pending, start] = useTransition();
 
-	onMount(() => {
+	start(() => {
 		axios
 			.get(ApiRoot("projects/all"))
 			.then((res) => {
@@ -25,17 +27,13 @@ export function Projects() {
 		<>
 			<NavBar />
 			<main>
-				{isLoading() ? (
-					// Show a loading indicator or message while data is being fetched
-					<div>Loading...</div>
-				) : (
-					// Render the data when it's available
-					// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-					projects().map((_p: any) => {
-						console.log(_p);
-						return <article />;
-					})
-				)}
+				<Suspense fallback={<div>Loading...</div>}>
+					{
+						projects().map((p: string[]) => {
+							return <RenderMarkdownText content={p[1]} />;
+						})
+					}
+				</Suspense>
 			</main>
 			<Footer />
 		</>

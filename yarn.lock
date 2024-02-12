@@ -576,6 +576,11 @@
   resolved "https://registry.yarnpkg.com/@solid-primitives/utils/-/utils-6.2.2.tgz#01c28bab7b2842b46bd5559716497decc51ad3cd"
   integrity sha512-11ypVbp987XxETeRqY5Y3OmmTpm8/jZqJXRvo6AyqBthzkvvjEdReuUMU2yVb+pwWGxfZpWHZ6EUCcGXUMhfwg==
 
+"@solidjs/router@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@solidjs/router/-/router-0.12.0.tgz#6fff6f32ea5ad442ded0c4ea0831521cf252f3ff"
+  integrity sha512-9dyBL35T7x86RBSJBMu9jLGytBTmWQehb0uxez7TfzYtwI+v9poo2fzRbcCCrWVTQkwGD/rWvqmxUvczp2at3A==
+
 "@types/babel__core@^7.20.4":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.20.5.tgz#3df15f27ba85319caa07ba08d0721889bb39c017"

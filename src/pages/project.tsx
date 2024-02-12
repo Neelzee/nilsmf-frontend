@@ -5,15 +5,17 @@ import { Footer } from "../components/footer";
 import "../styles/articles.scss";
 import { RenderImage } from "../components/images";
 import "../styles/project.scss";
-import { createEffect, createSignal, onMount } from "solid-js";
+import { Suspense, createEffect, createSignal, onMount, useTransition } from "solid-js";
 import { useParams } from "@solidjs/router";
+import { RenderMarkdownText } from "../components/MarkdownRenderer";
 
 export function Project() {
 	const [content, setContent] = createSignal("");
 	const [isLoading, setIsLoading] = createSignal(true);
+	const [pending, start] = useTransition();
 	const { file } = useParams();
 
-	onMount(() => {
+	start(() => {
 		axios
 			.get(ApiRoot(`project/${file}`))
 			.then((res) => {
@@ -30,13 +32,9 @@ export function Project() {
 		<>
 			<NavBar />
 			<main>
-				{isLoading() ? (
-					// Show a loading indicator or message while data is being fetched
-					<div>Loading...</div>
-				) : (
-					// Render the data when it's available
-					<article class="article">{content()}</article>
-				)}
+				<Suspense fallback={<div>Loading...</div>}>
+					<article class="article">{<RenderMarkdownText content={content()} />}</article>
+				</Suspense>
 			</main>
 			<Footer />
 		</>

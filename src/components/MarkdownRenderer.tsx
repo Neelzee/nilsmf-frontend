@@ -1,12 +1,13 @@
 import axios from "axios";
 import { ApiRoot } from "../utils/funcs";
-import { createEffect, createSignal, onMount } from "solid-js";
+import { createSignal, onMount, Suspense, useTransition } from "solid-js";
 import { SolidMarkdown } from "solid-markdown";
 
 export function RenderMarkdown(props: { file: string }) {
-	const [content, setContent] = createSignal("# NO DATA FOUND");
+	const [content, setContent] = createSignal("");
+	const [pending, start] = useTransition();
 
-	onMount(() => {
+	start(() => {
 		axios
 			.get(ApiRoot(`articles/${props.file}`))
 			.then((res) => {
@@ -16,8 +17,18 @@ export function RenderMarkdown(props: { file: string }) {
 	});
 
 	return (
-		<article>
-			<SolidMarkdown>{content()}</SolidMarkdown>
+		<article classList={{ pending: pending() }}>
+			<Suspense fallback={<div class="loader">Loading...</div>}>
+				<SolidMarkdown>{content()}</SolidMarkdown>
+			</Suspense>
+		</article>
+	);
+}
+
+export function RenderMarkdownText(props: { content: string }) {
+	return (
+		<article>			
+			<SolidMarkdown>{props.content}</SolidMarkdown>
 		</article>
 	);
 }
