@@ -30,12 +30,12 @@ export function Project() {
 		<>
 			<NavBar />
 			<main>
-				{isLoading ? (
+				{isLoading() ? (
 					// Show a loading indicator or message while data is being fetched
 					<div>Loading...</div>
 				) : (
 					// Render the data when it's available
-					<article class="article" />
+					<article class="article">{content()}</article>
 				)}
 			</main>
 			<Footer />

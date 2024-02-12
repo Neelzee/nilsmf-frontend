@@ -17,7 +17,7 @@ export function RenderMarkdown(props: { file: string }) {
 
 	return (
 		<article>
-			<SolidMarkdown>{content}</SolidMarkdown>
+			<SolidMarkdown>{content()}</SolidMarkdown>
 		</article>
 	);
 }

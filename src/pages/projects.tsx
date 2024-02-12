@@ -25,13 +25,14 @@ export function Projects() {
 		<>
 			<NavBar />
 			<main>
-				{isLoading ? (
+				{isLoading() ? (
 					// Show a loading indicator or message while data is being fetched
 					<div>Loading...</div>
 				) : (
 					// Render the data when it's available
 					// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-					projects.map((_p: any) => {
+					projects().map((_p: any) => {
+						console.log(_p);
 						return <article />;
 					})
 				)}
