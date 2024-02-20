@@ -7,8 +7,11 @@ nav {
   justify-content: center;
   align-items: center;
 
-  @media (min-width: $breakpoint-tablet) {
-    flex-direction: row;
+  @media (max-width: $breakpoint-tablet) {
+    flex-direction: column;
+    a {
+      margin: .25rem;
+    }
   }
 
   a {
