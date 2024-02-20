@@ -6,6 +6,11 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+  }
+
   a {
     padding: 0.25rem;
     padding-left: .75rem;
